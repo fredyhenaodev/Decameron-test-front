@@ -27,7 +27,7 @@ class HotelsTablePage extends Component {
           <meta property="twitter:title" content={title} />
           <meta property="twitter:description" content={description} />
         </Helmet>
-        <PapperBlock whiteBg icon="ios-create-outline" title="In-Row Editable Cell" desc="The Editable Table Cell supports editing features including creating, updating and deleting rows. The editing state contains information about rows currently being edited, changes applied to a particular row, and rows that have been deleted and created.">
+        <PapperBlock whiteBg icon="ios-create-outline" title="Hoteles" desc="En esta página podrás crear, eliminar y modificar hoteles.">
           <div className={classes.root}>
             <TableHotels />
           </div>

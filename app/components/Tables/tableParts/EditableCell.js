@@ -10,9 +10,9 @@ const styles = {};
 
 class EditableCell extends React.Component {
   handleUpdate(event) {
-    const { updateRow, branch } = this.props;
+    /*const { updateRow, branch } = this.props;
     event.persist();
-    updateRow(event, branch);
+    updateRow(event, branch);*/
   }
 
   render() {

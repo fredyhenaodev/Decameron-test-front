@@ -12,9 +12,9 @@ class ToggleCell extends React.Component {
   };
 
   handleChange = event => {
-    const { updateRow, branch } = this.props;
+    /*const { updateRow, branch } = this.props;
     this.setState({ isChecked: event.target.checked });
-    updateRow(event, branch);
+    updateRow(event, branch);*/
   };
 
   render() {

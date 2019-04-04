@@ -22,27 +22,15 @@ class MainTable extends React.Component {
     const {
       classes,
       items,
-      addEmptyRow,
-      removeRow,
-      updateRow,
-      editRow,
-      finishEditRow,
       anchor,
-      branch,
       title,
       width
     } = this.props;
 
     const getItems = dataArray => dataArray.map(item => (
       <Row
-        anchor={anchor}
-        updateRow={(event) => updateRow(event, item, branch)}
-        item={item}
-        removeRow={() => removeRow(item, branch)}
+        anchor={anchor}item={item}
         key={item.get('id')}
-        editRow={() => editRow(item, branch)}
-        finishEditRow={() => finishEditRow(item, branch)}
-        branch={branch}
       />
     ));
 
@@ -62,10 +50,10 @@ class MainTable extends React.Component {
           </div>
           <div className={classes.spacer} />
           <div className={classes.actions}>
-            <Tooltip title="Add Item">
-              <Button variant="contained" onClick={() => addEmptyRow(anchor, branch)} color="secondary" className={classes.button}>
+            <Tooltip title="Agregar">
+              <Button variant="contained" color="secondary" className={classes.button}>
                 <AddIcon className={classNames(isWidthUp('sm', width) && classes.leftIcon, classes.iconSmall)} />
-                {isWidthUp('sm', width) && 'Add New'}
+                {isWidthUp('sm', width) && 'Agregar'}
               </Button>
             </Tooltip>
           </div>
@@ -78,6 +66,7 @@ class MainTable extends React.Component {
               </TableRow>
             </TableHead>
             <TableBody>
+            {console.log(items)}
               {getItems(items)}
             </TableBody>
           </Table>
@@ -92,12 +81,6 @@ MainTable.propTypes = {
   classes: PropTypes.object.isRequired,
   items: PropTypes.object.isRequired,
   anchor: PropTypes.array.isRequired,
-  addEmptyRow: PropTypes.func.isRequired,
-  removeRow: PropTypes.func.isRequired,
-  updateRow: PropTypes.func.isRequired,
-  editRow: PropTypes.func.isRequired,
-  finishEditRow: PropTypes.func.isRequired,
-  branch: PropTypes.string.isRequired,
   width: PropTypes.string.isRequired
 };
 

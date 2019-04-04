@@ -4,33 +4,21 @@ import MainTable from '../tableParts/MainTable';
 
 class HotelsData extends React.Component {
   componentDidMount() {
-    const { fetchData, dataInit, branch } = this.props;
-    fetchData(dataInit, branch);
+    const { fetchData } = this.props;
+    fetchData();
   }
 
   render() {
     const {
       title,
       dataTable,
-      addEmptyRow,
-      removeRow,
-      updateRow,
-      editRow,
-      finishEditRow,
-      anchor,
-      branch
+      anchor
     } = this.props;
     return (
       <MainTable
         title={title}
-        addEmptyRow={addEmptyRow}
         items={dataTable}
-        removeRow={removeRow}
-        updateRow={updateRow}
-        editRow={editRow}
-        finishEditRow={finishEditRow}
         anchor={anchor}
-        branch={branch}
       />
     );
   }
@@ -39,15 +27,8 @@ class HotelsData extends React.Component {
 HotelsData.propTypes = {
   title: PropTypes.string.isRequired,
   anchor: PropTypes.array.isRequired,
-  dataInit: PropTypes.array.isRequired,
   dataTable: PropTypes.object.isRequired,
   fetchData: PropTypes.func.isRequired,
-  addEmptyRow: PropTypes.func.isRequired,
-  removeRow: PropTypes.func.isRequired,
-  updateRow: PropTypes.func.isRequired,
-  editRow: PropTypes.func.isRequired,
-  finishEditRow: PropTypes.func.isRequired,
-  branch: PropTypes.string.isRequired,
 };
 
 export default HotelsData;

@@ -24,7 +24,7 @@ const Breadcrumbs = (props) => {
             <p>
               Estás aquí:
               <span>
-              <Link to="/app">COBYTZ /</Link>
+              <Link to="/app">Decameron /</Link>
                 {
                   parts.map((part, partIndex) => {
                     const path = ['', ...parts.slice(0, partIndex + 1)].join('/');

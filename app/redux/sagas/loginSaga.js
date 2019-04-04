@@ -2,9 +2,15 @@ import {
     fetchLoginSuccess,
     fetchLoginFailure
   } from 'dan-actions/LoginActions';
+
+  import {
+    fetchHotelData
+  } from 'dan-actions/HotelActions';
+
 import {FETCH_LOGIN_INIT, FETCH_SIGNUP_INIT} from 'dan-actions/actionConstants';
   
 import API from '../services/api/login';
+import HOTEL from '../services/api/hotel';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { fetchSignupSuccess, fetchSignupFailure } from '../../actions/LoginActions';
   

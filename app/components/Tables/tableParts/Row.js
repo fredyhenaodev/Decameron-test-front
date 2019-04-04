@@ -26,44 +26,23 @@ class Row extends React.Component {
       classes,
       anchor,
       item,
-      removeRow,
-      updateRow,
-      editRow,
-      finishEditRow,
-      branch
     } = this.props;
     const eventDel = () => {
-      removeRow(item, branch);
+      //removeRow(item, branch);
     };
     const eventEdit = () => {
-      editRow(item, branch);
+      //editRow(item, branch);
     };
     const eventDone = () => {
-      finishEditRow(item, branch);
+      //finishEditRow(item, branch);
     };
     const renderCell = dataArray => dataArray.map((itemCell, index) => {
       if (itemCell.name !== 'action' && !itemCell.hidden) {
         const inputType = anchor[index].type;
         switch (inputType) {
-          case 'selection':
-            return (
-              <SelectableCell
-                updateRow={(event) => updateRow(event, branch)}
-                cellData={{
-                  type: itemCell.name,
-                  value: item.get(itemCell.name),
-                  id: item.get('id'),
-                }}
-                edited={item.get('edited')}
-                key={index.toString()}
-                options={anchor[index].options}
-                branch={branch}
-              />
-            );
           case 'toggle':
             return (
               <ToggleCell
-                updateRow={(event) => updateRow(event, branch)}
                 cellData={{
                   type: itemCell.name,
                   value: item.get(itemCell.name),
@@ -71,41 +50,11 @@ class Row extends React.Component {
                 }}
                 edited={item.get('edited')}
                 key={index.toString()}
-                branch={branch}
-              />
-            );
-          case 'date':
-            return (
-              <DatePickerCell
-                updateRow={(event) => updateRow(event, branch)}
-                cellData={{
-                  type: itemCell.name,
-                  value: item.get(itemCell.name),
-                  id: item.get('id'),
-                }}
-                edited={item.get('edited')}
-                key={index.toString()}
-                branch={branch}
-              />
-            );
-          case 'time':
-            return (
-              <TimePickerCell
-                updateRow={(event) => updateRow(event, branch)}
-                cellData={{
-                  type: itemCell.name,
-                  value: item.get(itemCell.name),
-                  id: item.get('id'),
-                }}
-                edited={item.get('edited')}
-                key={index.toString()}
-                branch={branch}
               />
             );
           default:
             return (
               <EditableCell
-                updateRow={(event) => updateRow(event, branch)}
                 cellData={{
                   type: itemCell.name,
                   value: item.get(itemCell.name),
@@ -114,7 +63,6 @@ class Row extends React.Component {
                 edited={item.get('edited')}
                 key={index.toString()}
                 inputType={inputType}
-                branch={branch}
               />
             );
         }
@@ -157,11 +105,6 @@ Row.propTypes = {
   classes: PropTypes.object.isRequired,
   anchor: PropTypes.array.isRequired,
   item: PropTypes.object.isRequired,
-  removeRow: PropTypes.func.isRequired,
-  updateRow: PropTypes.func.isRequired,
-  editRow: PropTypes.func.isRequired,
-  finishEditRow: PropTypes.func.isRequired,
-  branch: PropTypes.string.isRequired
 };
 
 export default withStyles(styles)(Row);

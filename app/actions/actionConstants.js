@@ -24,13 +24,16 @@ export const FETCH_SIGNUP_INIT = 'FETCH_SIGNUP_INIT';
 export const FETCH_SIGNUP_SUCCESS = 'FETCH_SIGNUP_SUCCESS';
 export const FETCH_SIGNUP_FAILURE = 'FETCH_SIGNUP_FAILURE';
 
-// Crud Table
-export const FETCH_DATA = 'FETCH_DATA';
-export const ADD_EMPTY_ROW = 'ADD_EMPTY_ROW';
-export const UPDATE_ROW = 'UPDATE_ROW';
-export const REMOVE_ROW = 'REMOVE_ROW';
-export const EDIT_ROW = 'EDIT_ROW';
-export const SAVE_ROW = 'SAVE_ROW';
+// Crud Table Hotel
+export const FETCH_DATA_HOTEL = 'FETCH_DATA_HOTEL';
+export const ADD_EMPTY_HOTEL = 'ADD_EMPTY_HOTEL';
+export const UPDATE_HOTEL = 'UPDATE_HOTEL';
+export const REMOVE_HOTEL = 'REMOVE_HOTEL';
+export const EDIT_HOTEL = 'EDIT_HOTEL';
+export const SAVE_HOTEL = 'SAVE_HOTEL';
+export const FETCH_HOTEL_INIT = 'FETCH_HOTEL_INIT';
+export const FETCH_HOTEL_SUCCESS = 'FETCH_HOTEL_SUCCESS';
+export const FETCH_HOTEL_FAILURE = 'FETCH_HOTEL_FAILURE';
 
 // Notification Form
 export const CLOSE_NOTIF = 'CLOSE_NOTIF';
