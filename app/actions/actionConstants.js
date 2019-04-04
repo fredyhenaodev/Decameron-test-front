@@ -18,7 +18,19 @@ export const CLEAR = 'CLEAR';
 export const FETCH_LOGIN_INIT = 'FETCH_LOGIN_INIT';
 export const FETCH_LOGIN_SUCCESS = 'FETCH_LOGIN_SUCCESS';
 export const FETCH_LOGIN_FAILURE = 'FETCH_LOGIN_FAILURE';
+
 // Register signup
 export const FETCH_SIGNUP_INIT = 'FETCH_SIGNUP_INIT';
 export const FETCH_SIGNUP_SUCCESS = 'FETCH_SIGNUP_SUCCESS';
 export const FETCH_SIGNUP_FAILURE = 'FETCH_SIGNUP_FAILURE';
+
+// Crud Table
+export const FETCH_DATA = 'FETCH_DATA';
+export const ADD_EMPTY_ROW = 'ADD_EMPTY_ROW';
+export const UPDATE_ROW = 'UPDATE_ROW';
+export const REMOVE_ROW = 'REMOVE_ROW';
+export const EDIT_ROW = 'EDIT_ROW';
+export const SAVE_ROW = 'SAVE_ROW';
+
+// Notification Form
+export const CLOSE_NOTIF = 'CLOSE_NOTIF';

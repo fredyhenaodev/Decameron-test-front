@@ -14,7 +14,7 @@ export RegisterForm from './Forms/RegisterForm';
 export ResetForm from './Forms/ResetForm';
 export Notification from './Notification/Notification';
 // Table
-export EmptyData from './Tables/EmptyData';
+export HotelsData from './Tables/Hotels/HotelsData';
 // Error
 export ErrorWrap from './Error/ErrorWrap';
 //Media 

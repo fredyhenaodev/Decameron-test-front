@@ -68,3 +68,8 @@ export const Parent = Loadable({
   loader: () => import('./Parent'),
   loading: Loading,
 });
+//Table
+export const HotelsTable = Loadable({
+  loader: () => import('./Tables/HotelsTablePage'),
+  loading: Loading,
+});

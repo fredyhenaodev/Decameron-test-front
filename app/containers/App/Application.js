@@ -7,7 +7,7 @@ import {
   DashboardPage,
   BlankPage,
   Form,
-  Table,
+  HotelsTable,
   Error,
   NotFound,
   Radio,
@@ -25,7 +25,7 @@ class Application extends React.Component {
           <Route path="/app/tv" component={Tv} />
           <Route path="/app/dashboard" component={DashboardPage} />
           <Route path="/app/form" component={Form} />
-          <Route path="/app/table" component={Table} />
+          <Route path="/app/hotels" component={HotelsTable} />
           <Route path="/app/page-list" component={Parent} />
           <Route path="/app/pages/not-found" component={NotFound} />
           <Route path="/app/pages/error" component={Error} />
