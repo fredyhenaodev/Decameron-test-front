@@ -34,6 +34,7 @@ export const SAVE_HOTEL = 'SAVE_HOTEL';
 export const FETCH_HOTEL_INIT = 'FETCH_HOTEL_INIT';
 export const FETCH_HOTEL_SUCCESS = 'FETCH_HOTEL_SUCCESS';
 export const FETCH_HOTEL_FAILURE = 'FETCH_HOTEL_FAILURE';
+export const REMOVE_HOTEL_SAGA = 'REMOVE_HOTEL_SAGA';
 
 // Notification Form
 export const CLOSE_NOTIF = 'CLOSE_NOTIF';

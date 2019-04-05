@@ -12,13 +12,15 @@ class HotelsData extends React.Component {
     const {
       title,
       dataTable,
-      anchor
+      anchor,
+      removeRow
     } = this.props;
     return (
       <MainTable
         title={title}
         items={dataTable}
         anchor={anchor}
+        removeRow={removeRow}
       />
     );
   }
@@ -29,6 +31,7 @@ HotelsData.propTypes = {
   anchor: PropTypes.array.isRequired,
   dataTable: PropTypes.object.isRequired,
   fetchData: PropTypes.func.isRequired,
+  removeRow: PropTypes.func.isRequired,
 };
 
 export default HotelsData;

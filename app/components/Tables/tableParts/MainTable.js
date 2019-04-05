@@ -24,13 +24,15 @@ class MainTable extends React.Component {
       items,
       anchor,
       title,
-      width
+      width,
+      removeRow
     } = this.props;
 
     const getItems = dataArray => dataArray.map(item => (
       <Row
         anchor={anchor}item={item}
         key={item.get('id')}
+        removeRow={removeRow}
       />
     ));
 
@@ -66,7 +68,6 @@ class MainTable extends React.Component {
               </TableRow>
             </TableHead>
             <TableBody>
-            {console.log(items)}
               {getItems(items)}
             </TableBody>
           </Table>
@@ -81,7 +82,8 @@ MainTable.propTypes = {
   classes: PropTypes.object.isRequired,
   items: PropTypes.object.isRequired,
   anchor: PropTypes.array.isRequired,
-  width: PropTypes.string.isRequired
+  width: PropTypes.string.isRequired,
+  removeRow: PropTypes.func.isRequired,
 };
 
 export default withWidth()(withStyles(styles)(MainTable));

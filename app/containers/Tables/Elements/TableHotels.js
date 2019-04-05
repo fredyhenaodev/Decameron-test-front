@@ -12,8 +12,8 @@ import injectSaga from 'utils/injectSaga';
 /**
  * Actions
  * */
-import { fetchHotelInit } from 'dan-actions/HotelActions';
-import { allHotelsSaga } from 'dan-redux/sagas/hotelSaga';
+import { fetchHotelInit, removeHotelSaga } from 'dan-actions/HotelActions';
+import { allHotelsSaga, deleteHotelSaga } from 'dan-redux/sagas/hotelSaga';
 
 
 const anchorTable = [
@@ -78,12 +78,19 @@ class TableHotels extends Component {
     );
   }
 
+  removeHotel = (item) => {
+    const { dispatch } = this.props;
+    dispatch(
+      removeHotelSaga(item)
+    )
+  }
+
   render() {
     const {
       classes,
       hotelData,
       closeNotif,
-      messageNotif,
+      messageNotif
     } = this.props;
 
     return (
@@ -94,7 +101,8 @@ class TableHotels extends Component {
             anchor={anchorTable}
             title="Hoteles Registrados"
             dataTable={hotelData}
-            fetchData={this.fetchData.bind(this)}
+            fetchData={this.fetchData}
+            removeRow={this.removeHotel}
           />
         </div>
       </div>
@@ -116,7 +124,8 @@ const mapStateToProps = state => ({
 });
 
 const materialHotel = withStyles(styles)(TableHotels);
-const withSaga = injectSaga({ key: 'FETCH_HOTEL_INIT', saga: allHotelsSaga });
+const withSagaGetHotels = injectSaga({ key: 'FETCH_HOTEL_INIT', saga: allHotelsSaga });
+const withSagaDeleteHotel = injectSaga({ key: 'REMOVE_HOTEL', saga: deleteHotelSaga });
 
 const withConnect = connect(
   mapStateToProps,
@@ -125,5 +134,6 @@ const withConnect = connect(
 
 export default compose(
   withConnect,
-  withSaga
+  withSagaGetHotels,
+  withSagaDeleteHotel
 )(materialHotel);

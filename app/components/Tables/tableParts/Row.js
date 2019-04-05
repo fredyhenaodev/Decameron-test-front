@@ -26,9 +26,10 @@ class Row extends React.Component {
       classes,
       anchor,
       item,
+      removeRow
     } = this.props;
     const eventDel = () => {
-      //removeRow(item, branch);
+      removeRow(item);
     };
     const eventEdit = () => {
       //editRow(item, branch);
@@ -91,7 +92,7 @@ class Row extends React.Component {
           <IconButton
             onClick={() => eventDel(this)}
             className={classes.button}
-            aria-label="Delete"
+            aria-label="Eliminar"
           >
             <DeleteIcon />
           </IconButton>

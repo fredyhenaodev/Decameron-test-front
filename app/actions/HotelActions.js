@@ -18,3 +18,13 @@ export const fetchHotelData = (items) => ({
     type: types.FETCH_DATA_HOTEL,
     items
 });
+
+export const removeHotelAction = (item) => ({
+    type: types.REMOVE_HOTEL,
+    item
+});
+
+export const removeHotelSaga = (item) => ({
+    type: types.REMOVE_HOTEL_SAGA,
+    item
+});

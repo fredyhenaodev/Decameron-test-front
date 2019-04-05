@@ -9,6 +9,10 @@ export default {
         async getHotels() {
             const response = await client.get(`${hotel}index`);
             return response;
+        },
+        async setDeleteHotel(item) {
+            const response = await client.delete(`${hotel}delete/${item}`)
+            return response;
         }
     }
 }
