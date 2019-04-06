@@ -23,14 +23,14 @@ class Form extends Component {
           </section>
           <div className={css.buttonArea}>
             <Button variant="contained" color="secondary" type="submit" disabled={submitting}>
-              Submit
+              Guardar
             </Button>
             <Button
               type="button"
               disabled={pristine || submitting}
               onClick={reset}
             >
-              Reset
+              Resetear
             </Button>
           </div>
         </form>
@@ -48,14 +48,14 @@ Form.propTypes = {
 };
 
 const FormMapped = reduxForm({
-  form: 'immutableExample',
+  form: 'Hotel',
   enableReinitialize: true,
 })(Form);
 
 
 const FormMappedInit = connect(
   state => ({
-    initialValues: state.getIn(['crudTableForm', 'formValues'])
+    initialValues: state.getIn(['hotelTable', 'formValues'])
   })
 )(FormMapped);
 

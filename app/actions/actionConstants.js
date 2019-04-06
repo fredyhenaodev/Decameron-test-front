@@ -26,7 +26,7 @@ export const FETCH_SIGNUP_FAILURE = 'FETCH_SIGNUP_FAILURE';
 
 // Crud Table Hotel
 export const FETCH_DATA_HOTEL = 'FETCH_DATA_HOTEL';
-export const ADD_EMPTY_HOTEL = 'ADD_EMPTY_HOTEL';
+export const ADD_NEW_HOTEL = 'ADD_NEW_HOTEL';
 export const UPDATE_HOTEL = 'UPDATE_HOTEL';
 export const REMOVE_HOTEL = 'REMOVE_HOTEL';
 export const EDIT_HOTEL = 'EDIT_HOTEL';
@@ -39,5 +39,10 @@ export const CREATE_HOTEL_SAGA = 'CREATE_HOTEL_SAGA';
 export const EDIT_HOTEL_SAGA = 'EDIT_HOTEL_SAGA';
 export const SAVE_HOTEL_SAGA = 'SAVE_HOTEL_SAGA';
 
+//Forms
+export const CLOSE_FORM = 'CLOSE_FORM';
+export const SUBMIT_DATA = 'SUBMIT_DATA';
+
 // Notification Form
 export const CLOSE_NOTIF = 'CLOSE_NOTIF';
+export const OPEN_NOTIF = 'OPEN_NOTIF';

@@ -47,7 +47,7 @@ class Row extends React.Component {
           case 'toggle':
             return (
               <ToggleCell
-                updateRow={updateRow}
+                updateRow={(event) => updateRow(event)}
                 cellData={{
                   type: itemCell.name,
                   value: item.get(itemCell.name),
@@ -60,7 +60,7 @@ class Row extends React.Component {
           default:
             return (
               <EditableCell
-                updateRow={updateRow}
+                updateRow={(event) => updateRow(event)}
                 cellData={{
                   type: itemCell.name,
                   value: item.get(itemCell.name),

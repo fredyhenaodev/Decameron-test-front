@@ -5,7 +5,8 @@ export const fetchHotelInit = () => ({
     type: types.FETCH_HOTEL_INIT
 });
 
-export const fetchHotelSuccess = () => ({
+export const fetchHotelSuccess = (msg) => ({
+    msg,
     type: types.FETCH_HOTEL_SUCCESS
 });
 
@@ -30,7 +31,7 @@ export const removeHotelSaga = (item) => ({
 });
 
 export const addHotelAction = (anchor) => ({
-    type: types.ADD_EMPTY_HOTEL,
+    type: types.ADD_NEW_HOTEL,
     anchor
 });
 
@@ -63,5 +64,23 @@ export const updateHotelAction = (event, item) => ({
     type: types.UPDATE_HOTEL,
     event,
     item
+});
+
+export const closeAction = () => ({
+    type: types.CLOSE_FORM
+});
+
+export const submitAction = (newData) => ({
+    type: types.SUBMIT_DATA,
+    newData
+});
+
+export const closeNotifAction = () => ({
+    type: types.CLOSE_NOTIF,
+});
+
+export const openNotifAction = (msg) => ({
+    msg,
+    type: types.OPEN_NOTIF,
 });
 

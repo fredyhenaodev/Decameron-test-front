@@ -5,34 +5,23 @@ import {
     FETCH_HOTEL_SUCCESS,
     FETCH_HOTEL_FAILURE,
     REMOVE_HOTEL,
-    ADD_EMPTY_HOTEL,
+    ADD_NEW_HOTEL,
     SAVE_HOTEL,
     EDIT_HOTEL,
     UPDATE_HOTEL,
+    CLOSE_FORM,
+    SUBMIT_DATA,
+    OPEN_NOTIF,
     CLOSE_NOTIF
 } from '../../actions/actionConstants';
 
 const initialState = {
     hotelData: List([]),
+    formValues: Map(),
+    showFrm: false,
     notifMsg: '',
     loading: false,
     error: null
-  };
-
-const initialItem = (keyTemplate, anchor) => {
-  const [...rawKey] = keyTemplate.keys();
-  const staticKey = {
-    id: (+new Date() + Math.floor(Math.random() * 999999)).toString(36),
-  };
-  for (let i = 0; i < rawKey.length; i += 1) {
-    if (rawKey[i] !== 'id' && rawKey[i] !== 'edited') {
-      staticKey[rawKey[i]] = anchor[i].initialValue;
-    }
-  }
-    // Push another static key
-  staticKey.edited = true;
-  
-  return Map(staticKey);
 };
 
 const initialImmutableState = fromJS(initialState);
@@ -48,8 +37,10 @@ export default function reducer(state = initialImmutableState, action = {})
         
         case FETCH_HOTEL_SUCCESS:
             return state.withMutations((mutableState) => {
+                const items = fromJS(action.msg);
                 mutableState.set('error', null);
                 mutableState.set('loading', false);
+                mutableState.set('notifMsg', items);
             });
 
         case FETCH_HOTEL_FAILURE:
@@ -57,6 +48,7 @@ export default function reducer(state = initialImmutableState, action = {})
                 const items = fromJS(action.error);
                 mutableState.set('error', items);
                 mutableState.set('loading', false);
+                mutableState.set('notifMsg', items);
             });
 
         case FETCH_DATA_HOTEL:
@@ -65,12 +57,11 @@ export default function reducer(state = initialImmutableState, action = {})
                 mutableState.set('hotelData', items);
             });
 
-        case ADD_EMPTY_HOTEL:
-            return state.withMutations((mutableState) => {
-              const raw = state.get('hotelData').last();
-              const initial = initialItem(raw, action.anchor);
-              mutableState.update('hotelData', hotelData => hotelData.unshift(initial));
-            });
+        case ADD_NEW_HOTEL:
+          return state.withMutations((mutableState) => {
+            const raw = state.get('hotelData').last();
+            mutableState.set('showFrm', true);
+          });
 
         case EDIT_HOTEL:
             return state.withMutations((mutableState) => {
@@ -110,6 +101,31 @@ export default function reducer(state = initialImmutableState, action = {})
                 .setIn([index, cellTarget], newVal(action.event.target.type))
               );
             });
+
+        case SUBMIT_DATA:
+          return state.withMutations((mutableState) => {
+            mutableState
+            .update('hotelData', hotelData => hotelData.unshift(Map(action.newData)));
+              mutableState.set('showFrm', false);
+              mutableState.set('formValues', Map());
+            });
+
+        case CLOSE_FORM:
+            return state.withMutations((mutableState) => {
+              mutableState
+                .set('formValues', Map())
+                .set('showFrm', false);
+            });
+        
+        case CLOSE_NOTIF:
+            return state.withMutations((mutableState) => {
+              mutableState.set('notifMsg', '');
+            });
+
+        case OPEN_NOTIF:
+          return state.withMutations((mutableState) => {
+            mutableState.set('notifMsg', action.notif);
+          });
         
         default:
             return state;
