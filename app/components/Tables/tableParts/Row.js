@@ -26,16 +26,19 @@ class Row extends React.Component {
       classes,
       anchor,
       item,
-      removeRow
+      removeRow,
+      editRow,
+      updateRow,
+      finishEditRow
     } = this.props;
     const eventDel = () => {
       removeRow(item);
     };
     const eventEdit = () => {
-      //editRow(item, branch);
+      editRow(item);
     };
     const eventDone = () => {
-      //finishEditRow(item, branch);
+      finishEditRow(item);
     };
     const renderCell = dataArray => dataArray.map((itemCell, index) => {
       if (itemCell.name !== 'action' && !itemCell.hidden) {
@@ -44,6 +47,7 @@ class Row extends React.Component {
           case 'toggle':
             return (
               <ToggleCell
+                updateRow={updateRow}
                 cellData={{
                   type: itemCell.name,
                   value: item.get(itemCell.name),
@@ -56,6 +60,7 @@ class Row extends React.Component {
           default:
             return (
               <EditableCell
+                updateRow={updateRow}
                 cellData={{
                   type: itemCell.name,
                   value: item.get(itemCell.name),

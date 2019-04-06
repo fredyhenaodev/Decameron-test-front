@@ -5,15 +5,15 @@ import { HotelsData, Notification } from 'dan-components';
 import styles from 'dan-components/Tables/tableStyle-jss';
 
 //Redux Saga
-import { compose } from 'redux';
+import { compose, bindActionCreators } from 'redux';
 import { connect } from 'react-redux'; 
 import injectSaga from 'utils/injectSaga';
 
 /**
  * Actions
  * */
-import { fetchHotelInit, removeHotelSaga } from 'dan-actions/HotelActions';
-import { allHotelsSaga, deleteHotelSaga } from 'dan-redux/sagas/hotelSaga';
+import { fetchHotelInit, removeHotelSaga, addHotelSaga, editHotelSaga, editHotelAction,  saveHotelSaga, updateHotelAction, addHotelAction} from 'dan-actions/HotelActions';
+import { allHotelsSaga, deleteHotelSaga, createHotelSaga, updateHotelSaga, hotelSaveSaga } from 'dan-redux/sagas/hotelSaga';
 
 
 const anchorTable = [
@@ -71,7 +71,7 @@ const reducer = 'hotelTable';
 
 class TableHotels extends Component {
 
-  fetchData = () => {
+  /*fetchData = () => {
     const { dispatch } = this.props;
     dispatch(
       fetchHotelInit()
@@ -85,12 +85,33 @@ class TableHotels extends Component {
     )
   }
 
+  addEmptyHotel = (item) => {
+    const { dispatch } = this.props;
+    dispatch(
+      addHotelSaga(item)
+    )
+  }
+
+  editHotel = (item) => {
+    const { dispatch } = this.props;
+    dispatch(
+      editHotelSaga(item)
+    )
+  }*/
+
   render() {
     const {
       classes,
+      fetchHotelInit,
+      removeHotelSaga,
+      addHotel,
+      editHotelSaga,
       hotelData,
       closeNotif,
-      messageNotif
+      messageNotif,
+      editRow,
+      updateRow,
+      finishEditRow
     } = this.props;
 
     return (
@@ -101,8 +122,12 @@ class TableHotels extends Component {
             anchor={anchorTable}
             title="Hoteles Registrados"
             dataTable={hotelData}
-            fetchData={this.fetchData}
-            removeRow={this.removeHotel}
+            fetchData={fetchHotelInit}
+            removeRow={removeHotelSaga}
+            addEmptyRow={addHotel}
+            editRow={editRow}
+            finishEditRow={finishEditRow}
+            updateRow={updateRow}
           />
         </div>
       </div>
@@ -123,17 +148,32 @@ const mapStateToProps = state => ({
   messageNotif: state.getIn([reducer, 'notifMsg']),
 });
 
-const materialHotel = withStyles(styles)(TableHotels);
+const mapDispatchToProps = dispatch => ({
+  editRow: bindActionCreators(editHotelAction, dispatch),
+  fetchHotelInit: bindActionCreators(fetchHotelInit, dispatch),
+  removeHotelSaga: bindActionCreators(removeHotelSaga, dispatch),
+  addHotel: bindActionCreators(addHotelAction, dispatch),
+  editHotelSaga: bindActionCreators(editHotelSaga, dispatch),
+  finishEditRow: bindActionCreators(saveHotelSaga, dispatch),
+  updateRow: bindActionCreators(updateHotelAction, dispatch),
+});
+
 const withSagaGetHotels = injectSaga({ key: 'FETCH_HOTEL_INIT', saga: allHotelsSaga });
-const withSagaDeleteHotel = injectSaga({ key: 'REMOVE_HOTEL', saga: deleteHotelSaga });
+const withSagaDeleteHotel = injectSaga({ key: 'REMOVE_HOTEL_SAGA', saga: deleteHotelSaga });
+const withSagaCreateHotel = injectSaga({ key: 'CREATE_HOTEL_SAGA', saga: createHotelSaga });
+const withSagaEditeHotel = injectSaga({ key: 'EDIT_HOTEL_SAGA', saga: updateHotelSaga });
+const withSagaSaveHotel = injectSaga({ key: 'SAVE_HOTEL_SAGA', saga: hotelSaveSaga });
 
 const withConnect = connect(
   mapStateToProps,
-  // mapDispatchToProps
-);
+  mapDispatchToProps
+)(TableHotels);
 
 export default compose(
-  withConnect,
   withSagaGetHotels,
-  withSagaDeleteHotel
-)(materialHotel);
+  withSagaDeleteHotel,
+  withSagaCreateHotel,
+  withSagaEditeHotel,
+  withSagaSaveHotel,
+  withStyles(styles)
+)(withConnect);

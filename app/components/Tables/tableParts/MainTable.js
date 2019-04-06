@@ -25,14 +25,22 @@ class MainTable extends React.Component {
       anchor,
       title,
       width,
-      removeRow
+      removeRow,
+      addEmptyRow,
+      editRow,
+      finishEditRow,
+      updateRow
     } = this.props;
 
     const getItems = dataArray => dataArray.map(item => (
       <Row
-        anchor={anchor}item={item}
+        anchor={anchor}
+        item={item}
         key={item.get('id')}
         removeRow={removeRow}
+        updateRow={updateRow}
+        editRow={editRow}
+        finishEditRow={finishEditRow}
       />
     ));
 
@@ -53,7 +61,7 @@ class MainTable extends React.Component {
           <div className={classes.spacer} />
           <div className={classes.actions}>
             <Tooltip title="Agregar">
-              <Button variant="contained" color="secondary" className={classes.button}>
+              <Button variant="contained" color="secondary" onClick={() => addEmptyRow(anchor)} className={classes.button}>
                 <AddIcon className={classNames(isWidthUp('sm', width) && classes.leftIcon, classes.iconSmall)} />
                 {isWidthUp('sm', width) && 'Agregar'}
               </Button>
@@ -84,6 +92,7 @@ MainTable.propTypes = {
   anchor: PropTypes.array.isRequired,
   width: PropTypes.string.isRequired,
   removeRow: PropTypes.func.isRequired,
+  addEmptyRow: PropTypes.func.isRequired,
 };
 
 export default withWidth()(withStyles(styles)(MainTable));

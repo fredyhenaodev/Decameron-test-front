@@ -10,9 +10,9 @@ const styles = {};
 
 class EditableCell extends React.Component {
   handleUpdate(event) {
-    /*const { updateRow, branch } = this.props;
+    const { updateRow } = this.props;
     event.persist();
-    updateRow(event, branch);*/
+    updateRow(event);
   }
 
   render() {
@@ -85,9 +85,7 @@ EditableCell.propTypes = {
   inputType: PropTypes.string.isRequired,
   cellData: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
-  updateRow: PropTypes.func.isRequired,
   edited: PropTypes.bool.isRequired,
-  branch: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(EditableCell);

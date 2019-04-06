@@ -13,7 +13,11 @@ class HotelsData extends React.Component {
       title,
       dataTable,
       anchor,
-      removeRow
+      removeRow,
+      addEmptyRow,
+      editRow,
+      updateRow,
+      finishEditRow
     } = this.props;
     return (
       <MainTable
@@ -21,6 +25,10 @@ class HotelsData extends React.Component {
         items={dataTable}
         anchor={anchor}
         removeRow={removeRow}
+        addEmptyRow={addEmptyRow}
+        editRow={editRow}
+        finishEditRow={finishEditRow}
+        updateRow={updateRow}
       />
     );
   }
@@ -32,6 +40,10 @@ HotelsData.propTypes = {
   dataTable: PropTypes.object.isRequired,
   fetchData: PropTypes.func.isRequired,
   removeRow: PropTypes.func.isRequired,
+  addEmptyRow: PropTypes.func.isRequired,
+  editRow: PropTypes.func.isRequired,
+  finishEditRow: PropTypes.func.isRequired,
+  updateRow: PropTypes.func.isRequired,
 };
 
 export default HotelsData;

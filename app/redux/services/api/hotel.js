@@ -13,6 +13,14 @@ export default {
         async setDeleteHotel(item) {
             const response = await client.delete(`${hotel}delete/${item}`)
             return response;
+        }, 
+        async setCreateHotel(item) {
+            const response = await client.post(`${hotel}store`, item);
+            return response;
+        },
+        async setUpdateHotel(item) {
+            const response = await client.put(`${hotel}update/${item.id}`, item)
+            return response;
         }
     }
 }
