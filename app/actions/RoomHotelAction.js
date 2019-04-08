@@ -62,12 +62,3 @@ export const addRoomHotelSaga = (item) => ({
     item
 });
 
-export const closeNotifRoomAction = () => ({
-    type: types.CLOSE_NOTIF_ROOM,
-});
-
-export const openNotifRoomAction = (msg) => ({
-    msg,
-    type: types.OPEN_NOTIF_ROOM,
-});
-

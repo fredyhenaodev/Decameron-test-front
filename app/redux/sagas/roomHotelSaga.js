@@ -14,9 +14,7 @@ import {
 import {
     fetchRoomHotelInit,
     fetchRoomInit,
-    fetchAccommodationInit,
-    fetchRoomHotelSuccess,
-    fetchRoomHotelFailure
+    fetchAccommodationInit
   } from 'dan-actions/RoomHotelAction';
 
 import API from '../services/api/hotel';
@@ -70,6 +68,18 @@ export function* fetchSetRoom(item) {
   }
 }
 
+export function* fetchDeleteRoom(item) {
+  try {
+    const { data } = yield call(API.hotel.setDeleteRoom, item.item);
+    if (data) {
+      yield put(fetchHotelSuccess('Tipo de Habitación eliminada correctamente.'));
+      yield put(fetchRoomHotelInit(data));
+    }
+  } catch (e) {
+    yield put(fetchHotelFailure(e.message)); 
+  }
+}
+
 export function* getRoomHotelSaga() {
     yield takeLatest(FETCH_ROOM_HOTEL_INIT_SAGA, fetchGetHotel);
 }
@@ -84,4 +94,8 @@ export function* getAccommodationSaga() {
 
 export function* setRoomSaga() {
   yield takeLatest(ADD_NEW_ROOM_HOTEL_SAGA, fetchSetRoom);
+}
+
+export function* deleteRoomSaga() {
+  yield takeLatest(REMOVE_ROOM_HOTEL_SAGA, fetchDeleteRoom);
 }

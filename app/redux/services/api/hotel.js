@@ -12,7 +12,7 @@ export default {
             return response;
         },
         async setDeleteHotel(item) {
-            const response = await client.delete(`${hotel}delete/${item}`)
+            const response = await client.delete(`${hotel}delete/${item}`);
             return response;
         }, 
         async setCreateHotel(item) {
@@ -20,15 +20,19 @@ export default {
             return response;
         },
         async setUpdateHotel(item) {
-            const response = await client.put(`${hotel}update/${item.id}`, item)
+            const response = await client.put(`${hotel}update/${item.id}`, item);
             return response;
         },
         async getHotel(item) {
-            const response = await client.get(`${hotel}show/${item}`)
+            const response = await client.get(`${hotel}show/${item}`);
             return response;
         },
         async setCreateRoom(item) {
-            const response = await client.post(`${hotel}room/store`, item)
+            const response = await client.post(`${hotel}${room}store`, item);
+            return response;
+        },
+        async setDeleteRoom(item) {
+            const response = await client.delete(`${hotel}${room}delete/${item.id}/${item.id_relation}`);
             return response;
         }
     },

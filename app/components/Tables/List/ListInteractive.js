@@ -43,8 +43,8 @@ import injectSaga from 'utils/injectSaga';
  * Actions
  * */
 import { closeNotifAction } from 'dan-actions/HotelActions';
-import { fetchRoomHotelSaga, closeNotifRoomAction, fetchRoomSaga, fetchAccommodationSaga, addRoomHotelSaga } from 'dan-actions/RoomHotelAction';
-import { getRoomHotelSaga, getRoomSaga, getAccommodationSaga, setRoomSaga } from 'dan-redux/sagas/roomHotelSaga';
+import { fetchRoomHotelSaga, fetchRoomSaga, fetchAccommodationSaga, addRoomHotelSaga, removeRoomHotelSaga } from 'dan-actions/RoomHotelAction';
+import { getRoomHotelSaga, getRoomSaga, getAccommodationSaga, setRoomSaga, deleteRoomSaga } from 'dan-redux/sagas/roomHotelSaga';
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -104,18 +104,15 @@ class ListInteractive extends React.Component {
       fetchAccommodationsInit(item);
     };
 
-    _handleDelete = (id) => {
-      //const { deleteHotelAssig } = this.props;
-      console.warn('_handleDelete', id);
-      //console.log(id);
-      //deleteHotelAssig(id, branch);
+    _handleDelete = (id_relation) => {
+      const { hotelData, removeRoom } = this.props;
+      removeRoom({id: hotelData.get('id'), id_relation});
     };
 
     render() {
       const {
         classes,
         roomData,
-        hotelData,
         roomsData,
         accommodationsData,
         closeNotif,
@@ -295,6 +292,7 @@ const mapDispatchToProps = dispatch => ({
   fetchHotelInit: bindActionCreators(fetchRoomHotelSaga, dispatch),
   fetchRoomsInit: bindActionCreators(fetchRoomSaga, dispatch),
   fetchAccommodationsInit: bindActionCreators(fetchAccommodationSaga, dispatch),
+  removeRoom: bindActionCreators(removeRoomHotelSaga, dispatch),
   addRoom: bindActionCreators(addRoomHotelSaga, dispatch),
   closeNotif: bindActionCreators(closeNotifAction, dispatch),
 });
@@ -303,6 +301,7 @@ const withSagaGetHotel = injectSaga({ key: 'FETCH_ROOM_HOTEL_INIT_SAGA', saga: g
 const withSagaGetRooms = injectSaga({ key: 'FETCH_ROOM_INIT_SAGA', saga: getRoomSaga });
 const withSagaGetAccommodations = injectSaga({ key: 'FETCH_ACCOMMODATION_INIT_SAGA', saga: getAccommodationSaga });
 const withSagaSetRoom = injectSaga({ key: 'ADD_NEW_ROOM_HOTEL_SAGA', saga: setRoomSaga });
+const withSagaDeleteRoom = injectSaga({ key: 'REMOVE_ROOM_HOTEL_SAGA', saga: deleteRoomSaga });
 
 const withConnect = connect(
   mapStateToProps,
@@ -314,5 +313,6 @@ export default compose(
   withSagaGetRooms,
   withSagaGetAccommodations,
   withSagaSetRoom,
+  withSagaDeleteRoom,
   withStyles(styles)
 )(withConnect);
