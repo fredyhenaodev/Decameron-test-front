@@ -17,6 +17,8 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import BeachAccessIcon from '@material-ui/icons/BeachAccess';
+import WorkIcon from '@material-ui/icons/Work';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import MenuItem from '@material-ui/core/MenuItem';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
@@ -114,15 +116,20 @@ class ListInteractive extends React.Component {
         classes,
         roomData,
         roomsData,
+        hotelData,
         accommodationsData,
         closeNotif,
         messageNotif,
+        backButton
        } = this.props;
       const { dense, secondary} = this.state;
       const trueBool = true;
       return (
         <div>
             <Notification close={() => closeNotif()} message={messageNotif} />
+            <IconButton onClick={() => backButton(false)} aria-label="Delete">
+              <ArrowBackIcon />
+            </IconButton>
             <Form onSubmit={this._submitAddRoom} >
             
                 <Fragment>
@@ -139,6 +146,29 @@ class ListInteractive extends React.Component {
                       xs={12}
                       className={classes.demo}
                     >
+                      <div className={classes.demo2}>
+                              <List dense={dense}>
+                                <ListItem key={'hotelCameron'}>
+                                  <ListItemAvatar>
+                                    <Avatar className={classes.avatarCyan}>
+                                      <WorkIcon />
+                                    </Avatar>
+                                  </ListItemAvatar>
+                                  <ListItemText
+                                    primary={'Nombre Hotel'}
+                                    secondary={secondary ? hotelData.get('name') : null}
+                                  />
+                                  <ListItemText
+                                    primary={'Nit'}
+                                    secondary={secondary ? hotelData.get('nit') : null}
+                                  />
+                                  <ListItemText
+                                    primary={'Cantidad de Habitaciones'}
+                                    secondary={secondary ? hotelData.get('number_rooms') : null}
+                                  />
+                                </ListItem>
+                              </List>
+                        </div>
                       <Grid
                         container
                         alignItems="flex-start"
@@ -221,47 +251,47 @@ class ListInteractive extends React.Component {
                 </Fragment>
           </Form>
           <Fragment>
-                  <Grid
-                    container
-                    alignItems="flex-start"
-                    justify="flex-start"
-                    direction="row"
-                    spacing={24}
-                  >
-          <Grid item xs={12} md={12}>
-                      <div className={classes.demo2}>
-                        <List dense={dense}>
-                        {roomData.map((item, index) => (
-                          <ListItem key={index + 1}>
-                            <ListItemAvatar>
-                              <Avatar className={classes.avatarCyan}>
-                                <BeachAccessIcon />
-                              </Avatar>
-                            </ListItemAvatar>
-                            <ListItemText
-                              primary={'Tipo de Habitación'}
-                              secondary={secondary ? item.get('type_room_name') : null}
-                            />
-                            <ListItemText
-                              primary={'Acomodación'}
-                              secondary={secondary ? item.get('accommodation_name') : null}
-                            />
-                            <ListItemText
-                              primary={'Número'}
-                              secondary={secondary ? item.get('quantity') : null}
-                            />
-                            <ListItemSecondaryAction>
-                              <IconButton onClick={() => this._handleDelete(item.get('id_relation'))} aria-label="Delete">
-                                <DeleteIcon />
-                              </IconButton>
-                            </ListItemSecondaryAction>
-                          </ListItem>
-                        ))}
-                        </List>
-                      </div>
-                    </Grid>
-                    </Grid>
-                    </Fragment>
+              <Grid
+                container
+                alignItems="flex-start"
+                justify="flex-start"
+                direction="row"
+                spacing={24}
+              >
+                <Grid item xs={12} md={12}>
+                            <div className={classes.demo2}>
+                              <List dense={dense}>
+                              {roomData.map((item, index) => (
+                                <ListItem key={index + 1}>
+                                  <ListItemAvatar>
+                                    <Avatar className={classes.avatarCyan}>
+                                      <BeachAccessIcon />
+                                    </Avatar>
+                                  </ListItemAvatar>
+                                  <ListItemText
+                                    primary={'Tipo de Habitación'}
+                                    secondary={secondary ? item.get('type_room_name') : null}
+                                  />
+                                  <ListItemText
+                                    primary={'Acomodación'}
+                                    secondary={secondary ? item.get('accommodation_name') : null}
+                                  />
+                                  <ListItemText
+                                    primary={'Número'}
+                                    secondary={secondary ? item.get('quantity') : null}
+                                  />
+                                  <ListItemSecondaryAction>
+                                    <IconButton onClick={() => this._handleDelete(item.get('id_relation'))} aria-label="Delete">
+                                      <DeleteIcon />
+                                    </IconButton>
+                                  </ListItemSecondaryAction>
+                                </ListItem>
+                              ))}
+                              </List>
+                            </div>
+                </Grid>
+              </Grid>
+            </Fragment>
         </div>
       );
     }

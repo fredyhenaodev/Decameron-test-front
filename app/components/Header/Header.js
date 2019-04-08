@@ -141,26 +141,21 @@ class Header extends React.Component {
             <div className={classes.headerProperties}>
               <div className={classNames(classes.headerAction, showTitle && classes.fadeOut)}>
                 {fullScreen ? (
-                  <Tooltip title="Exit Full Screen" placement="bottom">
+                  <Tooltip title="Salir de la pantalla completa" placement="bottom">
                     <IconButton className={classes.button} onClick={this.closeFullScreen}>
                       <Ionicon icon="ios-qr-scanner" />
                     </IconButton>
                   </Tooltip>
                 ) : (
-                  <Tooltip title="Full Screen" placement="bottom">
+                  <Tooltip title="Pantalla completa" placement="bottom">
                     <IconButton className={classes.button} onClick={this.openFullScreen}>
                       <Ionicon icon="ios-qr-scanner" />
                     </IconButton>
                   </Tooltip>
                 )}
-                <Tooltip title="Turn Dark/Light" placement="bottom">
+                <Tooltip title="Activar modo Oscuro/Claro" placement="bottom">
                   <IconButton className={classes.button} onClick={() => this.turnMode(mode)}>
                     <Ionicon icon="ios-bulb-outline" />
-                  </IconButton>
-                </Tooltip>
-                <Tooltip title="Show Guide" placement="bottom">
-                  <IconButton className={classes.button} onClick={openGuide}>
-                    <Ionicon icon="ios-help-circle-outline" />
                   </IconButton>
                 </Tooltip>
               </div>

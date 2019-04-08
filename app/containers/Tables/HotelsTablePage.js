@@ -27,6 +27,12 @@ class HotelsTablePage extends Component {
     });
   }
 
+  _handleState = (stateType) => {
+    this.setState(() => {
+      return {stateType: stateType};
+    });
+  }
+
   render() {
     const title = brand.name + ' - Table';
     const description = brand.desc;
@@ -45,7 +51,7 @@ class HotelsTablePage extends Component {
         {this.state.stateType ?
         <PapperBlock whiteBg icon="ios-create-outline" title="Tipos de Habitación" desc="En esta página podrás crear y eliminar los tipos de habitación de un hotel.">
           <div className={classes.root}>
-            <RoomList item={this.state.item}/>
+            <RoomList item={this.state.item} backButton={this._handleState}/>
           </div>
         </PapperBlock>
              :

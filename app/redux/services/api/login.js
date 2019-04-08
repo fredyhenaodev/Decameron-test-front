@@ -9,10 +9,6 @@ export default {
         async getLogin(data) {
             const response = await client.post(`${oauth}login`, data);
             return response;
-        },
-        async setRegister(data) {
-            const response = await client.post(`${oauth}signup`, data)
-            return response;
         }
     }
 }

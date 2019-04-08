@@ -99,8 +99,6 @@ class LoginForm extends React.Component {
               </FormControl>
             </div>
             <div className={classes.optArea}>
-              <FormControlLabel className={classes.label} control={<Field name="checkbox" component={Checkbox} />} label="Recordar" />
-              <Button size="small" component={NavLink} to="/reset-password" className={classes.buttonLink}>¿Olvidaste tu contraseña?</Button>
             </div>
             <div className={classes.btnArea}>
               <Button variant="contained" fullWidth color="primary" size="large" type="submit">

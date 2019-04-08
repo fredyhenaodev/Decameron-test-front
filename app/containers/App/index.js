@@ -5,6 +5,7 @@ import Auth from './Auth';
 import Application from './Application';
 import LoginDedicated from '../Pages/Standalone/LoginDedicated';
 import ThemeWrapper, { AppContext } from './ThemeWrapper';
+import PrivateRoute from "./PrivateRoute";
 window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
 
 
@@ -16,10 +17,10 @@ class App extends React.Component {
           {(changeMode) => (
             <Switch>
               <Route path="/" exact component={LoginDedicated} />
-              <Route
+              <PrivateRoute
                 path="/app"
-                render={(props) => <Application {...props} changeMode={changeMode} />}
-              />
+                render={props => <Application {...props} changeMode={changeMode} /> }
+                />
               <Route component={Auth} />
               <Route component={NotFound} />
             </Switch>
