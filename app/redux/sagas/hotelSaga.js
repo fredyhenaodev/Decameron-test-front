@@ -37,7 +37,7 @@ export function* fetchDeleteHotel(item) {
     
     if (data) {
       yield put(fetchHotelSuccess(data.message));
-      yield put(removeHotelAction(item));
+      yield put(removeHotelAction(item.item));
     }
   } catch (e) {
     yield put(fetchHotelFailure(e.message)); 

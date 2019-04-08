@@ -63,9 +63,17 @@ const anchorTable = [
     initialValue: '',
     width: 'auto',
     hidden: false
-  },{
+  },
+  {
     name: 'action',
-    label: 'Action',
+    label: 'Tipo Habitaciones',
+    type: 'static',
+    initialValue: '',
+    hidden: false
+  },
+  {
+    name: 'action',
+    label: 'Acciones',
     type: 'static',
     initialValue: '',
     hidden: false
@@ -111,7 +119,8 @@ class TableHotels extends Component {
       openForm,
       initValues,
       addNew,
-      submit
+      submit,
+      updateState
     } = this.props;
 
     return (
@@ -132,6 +141,7 @@ class TableHotels extends Component {
             initValues={initValues}
             addNew={addNew}
             submit={submit}
+            updateState={updateState}
           >
             <div>
               <Field
@@ -209,6 +219,7 @@ TableHotels.propTypes = {
   addNew: PropTypes.func.isRequired,
   submit: PropTypes.func.isRequired,
   closeNotif: PropTypes.func.isRequired,
+  updateState: PropTypes.func.isRequired
 };
 
 

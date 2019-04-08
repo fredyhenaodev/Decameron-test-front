@@ -7,12 +7,10 @@ import classNames from 'classnames';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/BorderColor';
 import DoneIcon from '@material-ui/icons/Done';
+import AddIcon from '@material-ui/icons/Add';
 import css from 'dan-styles/Table.scss';
 import EditableCell from './EditableCell';
-import SelectableCell from './SelectableCell';
 import ToggleCell from './ToggleCell';
-import DatePickerCell from './DatePickerCell';
-import TimePickerCell from './TimePickerCell';
 
 const styles = theme => ({
   button: {
@@ -29,7 +27,8 @@ class Row extends React.Component {
       removeRow,
       editRow,
       updateRow,
-      finishEditRow
+      finishEditRow,
+      updateState
     } = this.props;
     const eventDel = () => {
       removeRow(item);
@@ -80,6 +79,15 @@ class Row extends React.Component {
         {renderCell(anchor)}
         <TableCell padding="none">
           <IconButton
+            onClick={() => updateState(item.get('id'), true)}
+            className={classes.button}
+            aria-label="Agregar Tipo de Hotel"
+          >
+            <AddIcon />
+          </IconButton>
+        </TableCell>
+        <TableCell padding="none">
+          <IconButton
             onClick={() => eventEdit(this)}
             className={classNames((item.get('edited') ? css.hideAction : ''), classes.button)}
             aria-label="Edit"
@@ -90,7 +98,7 @@ class Row extends React.Component {
             onClick={() => eventDone(this)}
             color="secondary"
             className={classNames((!item.get('edited') ? css.hideAction : ''), classes.button)}
-            aria-label="Done"
+            aria-label="Editar"
           >
             <DoneIcon />
           </IconButton>
@@ -111,6 +119,7 @@ Row.propTypes = {
   classes: PropTypes.object.isRequired,
   anchor: PropTypes.array.isRequired,
   item: PropTypes.object.isRequired,
+  updateState: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(Row);

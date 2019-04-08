@@ -29,7 +29,8 @@ class MainTable extends React.Component {
       editRow,
       finishEditRow,
       updateRow,
-      addNew
+      addNew,
+      updateState
     } = this.props;
 
     const getItems = dataArray => dataArray.map(item => (
@@ -41,6 +42,7 @@ class MainTable extends React.Component {
         updateRow={(event) => updateRow(event, item)}
         editRow={editRow}
         finishEditRow={finishEditRow}
+        updateState={updateState}
       />
     ));
 
@@ -93,6 +95,7 @@ MainTable.propTypes = {
   width: PropTypes.string.isRequired,
   removeRow: PropTypes.func.isRequired,
   addNew: PropTypes.func.isRequired,
+  updateState: PropTypes.func.isRequired,
 };
 
 export default withWidth()(withStyles(styles)(MainTable));

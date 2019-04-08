@@ -28,7 +28,8 @@ class HotelsData extends React.Component {
       updateRow,
       finishEditRow,
       initValues,
-      addNew
+      addNew,
+      updateState
     } = this.props;
     return (
       <div>
@@ -46,6 +47,7 @@ class HotelsData extends React.Component {
           finishEditRow={finishEditRow}
           updateRow={updateRow}
           addNew={addNew}
+          updateState={updateState}
         />
       </div>
     );
@@ -62,6 +64,7 @@ HotelsData.propTypes = {
   finishEditRow: PropTypes.func.isRequired,
   updateRow: PropTypes.func.isRequired,
   addNew: PropTypes.func.isRequired,
+  updateState: PropTypes.func.isRequired,
 };
 
 export default HotelsData;
