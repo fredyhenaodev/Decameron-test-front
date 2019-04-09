@@ -47,6 +47,7 @@ export default function reducer(state = initialImmutableState, action = {})
 
         case FETCH_ACCOMMODATION_INIT:
             return state.withMutations((mutableState) => {
+                mutableState.set('accommodations', List([]));
                 const items = fromJS(action.items.accommodations);
                 mutableState.set('accommodations', items);
                 mutableState.set('error', null);
