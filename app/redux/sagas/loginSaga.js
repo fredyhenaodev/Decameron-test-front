@@ -1,3 +1,4 @@
+import { stopSubmit } from 'redux-form';
 import {
     fetchLoginSuccess,
     fetchLoginFailure,
@@ -21,6 +22,8 @@ export function* fetchLogin(action) {
         window.location.replace('/app/hotels');
       }
     } catch (e) {
+      // Error Form
+      yield put(stopSubmit('Login', { _error: e.message }));
       yield put(fetchLoginFailure(e.message)); 
     }
 }

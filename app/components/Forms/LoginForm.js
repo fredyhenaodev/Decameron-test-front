@@ -45,6 +45,7 @@ class LoginForm extends React.Component {
       pristine,
       submitting,
       deco,
+      error
     } = this.props;
     const { showPassword } = this.state;
     return (
@@ -107,6 +108,7 @@ class LoginForm extends React.Component {
               </Button>
             </div>
           </form>
+          {error && <strong>{error}</strong>}
         </section>
       </Paper>
     );
@@ -122,7 +124,7 @@ LoginForm.propTypes = {
 };
 
 const LoginFormReduxed = reduxForm({
-  form: 'immutableExample',
+  form: 'Login',
   enableReinitialize: true,
 })(LoginForm);
 
