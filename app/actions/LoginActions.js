@@ -30,3 +30,18 @@ export const fetchSignupFailure = error => ({
     type: types.FETCH_SIGNUP_FAILURE,
     error
 });
+
+export const fetchLogoutInit = user => ({
+    type: types.FETCH_LOGOUT_INIT,
+    payload: user
+});
+
+export const fetchLogoutSuccess = msg => ({
+   type: types.FETCH_LOGOUT_SUCCESS,
+    payload: msg
+});
+
+export const fetchLogoutFailure = error => ({
+    type: types.FETCH_LOGOUT_FAILURE,
+    error
+});

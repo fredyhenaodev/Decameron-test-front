@@ -57,69 +57,6 @@ class UserMenu extends React.Component {
             <Ionicon icon="ios-notifications-outline" />
           </Badge>
         </IconButton>
-        <Menu
-          id="menu-notification"
-          anchorEl={anchorEl}
-          anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
-          className={classes.notifMenu}
-          PaperProps={{
-            style: {
-              width: 350,
-            },
-          }}
-          open={openMenu === 'notification'}
-          onClose={this.handleClose}
-        >
-          <MenuItem onClick={this.handleClose}>
-            <div className={messageStyles.messageInfo}>
-              <Avatar alt="User Name" src={avatarApi[0]} />
-              <ListItemText primary={dummy.text.subtitle} secondary={dummy.text.date} />
-            </div>
-          </MenuItem>
-          <Divider variant="inset" />
-          <MenuItem onClick={this.handleClose}>
-            <div className={messageStyles.messageInfo}>
-              <Avatar className={messageStyles.icon}>
-                <Info />
-              </Avatar>
-              <ListItemText primary={dummy.text.sentences} className={classes.textNotif} secondary={dummy.text.date} />
-            </div>
-          </MenuItem>
-          <Divider variant="inset" />
-          <MenuItem onClick={this.handleClose}>
-            <div className={messageStyles.messageSuccess}>
-              <Avatar className={messageStyles.icon}>
-                <Check />
-              </Avatar>
-              <ListItemText primary={dummy.text.subtitle} className={classes.textNotif} secondary={dummy.text.date} />
-            </div>
-          </MenuItem>
-          <Divider variant="inset" />
-          <MenuItem onClick={this.handleClose}>
-            <div className={messageStyles.messageWarning}>
-              <Avatar className={messageStyles.icon}>
-                <Warning />
-              </Avatar>
-              <ListItemText primary={dummy.text.subtitle} className={classes.textNotif} secondary={dummy.text.date} />
-            </div>
-          </MenuItem>
-          <Divider variant="inset" />
-          <MenuItem onClick={this.handleClose}>
-            <div className={messageStyles.messageError}>
-              <Avatar className={messageStyles.icon}>
-                <Error />
-              </Avatar>
-              <ListItemText primary="Suspendisse pharetra pulvinar sollicitudin. Aenean ut orci eu odio cursus lobortis eget tempus velit. " className={classes.textNotif} secondary="Jan 9, 2016" />
-            </div>
-          </MenuItem>
-        </Menu>
         <Button onClick={this.handleMenu('user-setting')}>
           <Avatar
             alt={dummy.user.name}
@@ -140,8 +77,6 @@ class UserMenu extends React.Component {
           open={openMenu === 'user-setting'}
           onClose={this.handleClose}
         >
-          <MenuItem onClick={this.handleClose} component={Link} to={link.profile}>Mi Cuenta</MenuItem>
-          <Divider />
           <MenuItem onClick={this.handleClose} component={Link} to="/">
             <ListItemIcon>
               <ExitToApp />

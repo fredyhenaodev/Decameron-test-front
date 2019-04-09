@@ -26,10 +26,11 @@ class MainTable extends React.Component {
       title,
       width,
       removeRow,
-      addEmptyRow,
       editRow,
       finishEditRow,
-      updateRow
+      updateRow,
+      addNew,
+      updateState
     } = this.props;
 
     const getItems = dataArray => dataArray.map(item => (
@@ -38,9 +39,10 @@ class MainTable extends React.Component {
         item={item}
         key={item.get('id')}
         removeRow={removeRow}
-        updateRow={updateRow}
+        updateRow={(event) => updateRow(event, item)}
         editRow={editRow}
         finishEditRow={finishEditRow}
+        updateState={updateState}
       />
     ));
 
@@ -61,7 +63,7 @@ class MainTable extends React.Component {
           <div className={classes.spacer} />
           <div className={classes.actions}>
             <Tooltip title="Agregar">
-              <Button variant="contained" color="secondary" onClick={() => addEmptyRow(anchor)} className={classes.button}>
+              <Button variant="contained" onClick={() => addNew(anchor)} color="secondary" className={classes.button}>
                 <AddIcon className={classNames(isWidthUp('sm', width) && classes.leftIcon, classes.iconSmall)} />
                 {isWidthUp('sm', width) && 'Agregar'}
               </Button>
@@ -92,7 +94,8 @@ MainTable.propTypes = {
   anchor: PropTypes.array.isRequired,
   width: PropTypes.string.isRequired,
   removeRow: PropTypes.func.isRequired,
-  addEmptyRow: PropTypes.func.isRequired,
+  addNew: PropTypes.func.isRequired,
+  updateState: PropTypes.func.isRequired,
 };
 
 export default withWidth()(withStyles(styles)(MainTable));

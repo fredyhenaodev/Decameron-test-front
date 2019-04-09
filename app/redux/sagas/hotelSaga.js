@@ -3,7 +3,8 @@ import {
     fetchHotelSuccess,
     fetchHotelFailure,
     removeHotelAction,
-    saveHotelAction
+    saveHotelAction,
+    submitAction
   } from 'dan-actions/HotelActions';
 
 import { 
@@ -22,7 +23,7 @@ export function* fetchGetHotels() {
       const { data } = yield call(API.hotel.getHotels);
       
       if (data) {
-        yield put(fetchHotelSuccess());
+        yield put(fetchHotelSuccess(''));
         yield put(fetchHotelData(data));
       }
     } catch (e) {
@@ -35,8 +36,8 @@ export function* fetchDeleteHotel(item) {
     const { data } = yield call(API.hotel.setDeleteHotel, item.item.toJS().id);
     
     if (data) {
-      yield put(fetchHotelSuccess());
-      yield put(removeHotelAction(item));
+      yield put(fetchHotelSuccess(data.message));
+      yield put(removeHotelAction(item.item));
     }
   } catch (e) {
     yield put(fetchHotelFailure(e.message)); 
@@ -45,14 +46,12 @@ export function* fetchDeleteHotel(item) {
 
 export function* fetchCreateHotel(item) {
   try {
-    console.log(item)
-    yield put(editHotelAction(item))
-    /*const { data } = yield call(API.hotel.setDeleteHotel, item.item.toJS().id);
+    const { data } = yield call(API.hotel.setCreateHotel, item.item.toJS());
     
     if (data) {
-      yield put(fetchHotelSuccess());
-      yield put(removeHotelAction(item));
-    }*/
+      yield put(fetchHotelSuccess(data.message));
+      yield put(submitAction(data.hotel));
+    }
   } catch (e) {
     yield put(fetchHotelFailure(e.message)); 
   }
@@ -60,13 +59,11 @@ export function* fetchCreateHotel(item) {
 
 export function* fetchSaveHotel(item) {
   try {
-    console.log(item);
-    /*const { data } = yield call(API.hotel.setUpdateHotel, item.item.toJS());
-    
+    const { data } = yield call(API.hotel.setUpdateHotel, item.item.toJS());
     if (data) {
-      yield put(fetchHotelSuccess());
-      yield put(saveHotelAction(item));
-    }*/
+      yield put(fetchHotelSuccess(data.message));
+      yield put(saveHotelAction(item.item));
+    }
   } catch (e) {
     yield put(fetchHotelFailure(e.message)); 
   }
