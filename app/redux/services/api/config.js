@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const getClient = () => {
   const options = {
-    baseURL: 'http://decameron.test/api/'
+    baseURL: 'https://api-decameron.tk/api/'
   };
   if (localStorage.token) {
     options.headers = {
